@@ -6,13 +6,21 @@ import Select from "../Select";
 import Button from "../Button";
 
 export default function ContactForm({ buttonLabel }) {
+
+
+
     return (
         <Form>
             <FormGroup>
-                <Input placeholder="Nome" />
+                <Input
+                placeholder="Nome"
+                onChange={() => console.log('Digitou...')}
+                />
             </FormGroup>
-            <FormGroup>
-                <Input placeholder="email" />
+            <FormGroup
+                error="Formato de email invalido"
+            >
+                <Input placeholder="email" error />
             </FormGroup>
             <FormGroup>
                 <Input placeholder="Telefone" />
