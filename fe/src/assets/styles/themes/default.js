@@ -14,13 +14,12 @@ export default {
             100: '#F2F2F2',
         },
         danger: {
-<<<<<<< HEAD
+
             main: '#E25858',
             light: '#FF9797',
-=======
+
             light: '#FF9797',
             main: '#E25858',
->>>>>>> d2c9db3a34372c1dffbe0256d7ab93f5380dcfdc
             dark: '#C92A2A',
         }
     }
