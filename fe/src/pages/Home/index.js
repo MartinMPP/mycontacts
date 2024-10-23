@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // import Modal from "../../components/Modal";
 // import Loader from "../../components/Loader";
 
-import Modal from "../../components/Modal";
+// import Modal from "../../components/Modal";
 
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
             {/* <Modal danger/> */}
             {/* <Loader /> */}
 
-            <Modal danger/>
+            {/* <Modal danger/> */}
 
 
             <InputSearchContainer>
