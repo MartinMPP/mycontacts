@@ -12,6 +12,7 @@ export default styled.select`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.gray[900]};
     transition: all 0.2s ease-in;
+    appearance: none;
 
     &:focus {
         border-color: ${({ theme }) => theme.colors.primary.dark};
