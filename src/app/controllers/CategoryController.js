@@ -19,6 +19,7 @@ class CategoryController {
         response.json(category)
 
     }
+
 }
 
 

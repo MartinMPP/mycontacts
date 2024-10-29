@@ -4,10 +4,6 @@ import edit from "../../assets/images/icons/edit.svg"
 import trash from "../../assets/images/icons/trash.svg"
 import { Link } from "react-router-dom";
 
-// import Modal from "../../components/Modal";
-// import Loader from "../../components/Loader";
-
-// import Modal from "../../components/Modal";
 
 
 export default function Home() {
@@ -54,4 +50,13 @@ export default function Home() {
         </Container>
     )
 }
+
+
+fetch('http://localhost:3001/contacts')
+    .then(response => {
+        console.log('response', response)
+    })
+    .catch((error)=>{
+        console.log('error', error)
+    })
 

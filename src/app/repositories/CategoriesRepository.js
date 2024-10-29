@@ -14,7 +14,6 @@ class CategoriesRepository {
             `, [name])
         return row
     }
-
 }
 
 

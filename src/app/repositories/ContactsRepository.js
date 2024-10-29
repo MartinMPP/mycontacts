@@ -7,7 +7,11 @@ const db = require('../../database')
 class ContactsRepository {
     async findAll(orderBy = 'ASC') {
         const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC'
-        const rows = await db.query(`SELECT contacts.*, categories.name AS category_name FROM contacts LEFT JOIN categories ON categories.id = category_id ORDER BY contacts.name ${direction}`)
+        const rows = await db.query(`SELECT contacts.*, categories.name AS category_name
+             FROM contacts
+             LEFT JOIN categories
+             ON categories.id = category_id
+             ORDER BY contacts.name ${direction}`)
         return rows
 
     }
