@@ -5,8 +5,8 @@ import trash from "../../assets/images/icons/trash.svg"
 import { Link } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import Loader from "../../components/Loader";
-import delay from "../../utils/delay";
-import { cleanup } from "@testing-library/react";
+import ContactsServices from "../../services/ContactsServices";
+
 
 
 
@@ -14,33 +14,29 @@ export default function Home() {
     const [contacts, setContacts] = useState([])
     const [orderBy, setOrderBy] = useState('asc')
     const [searchTerm, setSearchTerm] = useState('')
-    const filteredContacts = useMemo(() => contacts.filter((contact) => (contact.name.toLowerCase().includes(searchTerm.toLowerCase()))), [contacts, searchTerm])
     const [isLoading, setIsLoading] = useState(true)
+    const filteredContacts = useMemo(() => contacts.filter((contact) => (contact.name.toLowerCase().includes(searchTerm.toLowerCase()))), [contacts, searchTerm])
 
 
 
     useEffect(() => {
-        setIsLoading(true)
-        fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
+        async function loadContacts() {
+            try {
+                setIsLoading(true)
+                console.log('antes')
+                const contactsList = await ContactsServices.listContacts(orderBy)
+                console.log('depois')
 
+                setContacts(contactsList)
 
-            .then(async response => {
-                // await delay(500)
-
-                const json = await response.json()
-                setContacts(json)
-                setIsLoading(false)
-
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.log('error', error)
-            })
-            .finally(() => {
+            } finally{
                 setIsLoading(false)
-            })
+            }
+        }
 
-        return () => console.log('cleanup')
-
+        loadContacts()
     }, [orderBy])
 
 
@@ -56,7 +52,7 @@ export default function Home() {
 
     return (
         <Container>
-            {isLoading && <Loader isLoading={isLoading} />}
+            <Loader isLoading={isLoading} />
             <InputSearchContainer>
                 <input
                     value={searchTerm}
