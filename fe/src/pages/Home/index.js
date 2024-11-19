@@ -15,6 +15,7 @@ export default function Home() {
     const [orderBy, setOrderBy] = useState('asc')
     const [searchTerm, setSearchTerm] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+
     const filteredContacts = useMemo(() => contacts.filter((contact) => (contact.name.toLowerCase().includes(searchTerm.toLowerCase()))), [contacts, searchTerm])
 
 
@@ -23,14 +24,17 @@ export default function Home() {
         async function loadContacts() {
             try {
                 setIsLoading(true)
-                console.log('antes')
-                const contactsList = await ContactsServices.listContacts(orderBy)
-                console.log('depois')
 
-                setContacts(contactsList)
+                const contactsList = await ContactsServices.listContacts(orderBy)
+
+                if (contactsList) {
+                    setContacts(contactsList)
+                }else {
+                    console.log('erro na API')
+                }
 
             } catch (error) {
-                console.log('error', error)
+                console.log('Caiu no erro', error)
             } finally{
                 setIsLoading(false)
             }
